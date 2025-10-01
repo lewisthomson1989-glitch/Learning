@@ -22,7 +22,6 @@ class Car:
         self.price = price
         self.mileage = mileage
         self.condition = condition
-        self.test = "badgers"
 
 # ----------------------------------------
 # CHALLENGE PART 2: Random Car Generation
@@ -46,13 +45,8 @@ CAR_DATA = {
         0: 'New', 1: 'Excellent', 2: 'Good', 3: 'Fair', 4: 'Poor'
     }
 }
-make = random.choice(CAR_DATA['makes'])
-model = random.choice(CAR_DATA['models'])
-colour = random.choice(CAR_DATA['colors'])
-condition = random.choice(CAR_DATA['conditions'])
 
-print(make, model, colour, condition) # prints a random car.
-def generate_random_car() -> Car:  # I had noticed you passed self as an arg here, that only applies for methods, which are functions inside classes.
+def generate_random_car(random_car_data) -> Car:  
     """
     TODO: Create a function that generates a random car using:
     - random.choice() ntto pick from the dictionaries above
@@ -63,33 +57,30 @@ def generate_random_car() -> Car:  # I had noticed you passed self as an arg her
     Returns: A new Car object with random attributes
 
     """
-    # Ok, Car() first arg needs to be a make. Here's a clue for getting random make value.
-    # random.randint(start, stop) = lowest and highest possible values, they need to match the number of elements in your iterable.
-    # You know with an int, you can match that to the key in your dictionary. Eg CAR_DATA["makes"][6] is "Tesla"
-    # randint() returns an int, you can use that to get a random key.
-    # Random choice actually works better here, save randint for those monetary/mileage values.
-
-    # Example: model = random.choice(CAR_DATA["models"])  # not self.model?
-    for r in car:
-        make = random.choice(CAR_DATA['makes'])
-        model = random.choice(CAR_DATA['models'])
-        colour = random.choice(CAR_DATA['colors'])
-        condition = random.choice(CAR_DATA['conditions'])
-
-    print(make, model, colour, condition)
     
+    
+    
+    make = random.choice(random_car_data['makes'])
+    model = random.choice(random_car_data['models'])
+    colour = random.choice(random_car_data['colors'])
+    condition = random.choice(random_car_data['conditions'])
+    
+    print(make, model, colour, condition)
     car = Car(
-        # You need to figure all these None's out. You can save as variables and pass them in, or just call on random for the value.
-        make=None,
-        model=None,
+        
+        make= make,
+        model= model, ## Note: Remember to populate these (not none). ##
         year=None,
-        colour=None,
-        price=None, # Not from CAR_DATA
+        colour= colour,
+        price=None, 
         mileage=None,
-        condition=None  # From CAR_DATA again.
+        condition= condition  
     )
-    return car
 
+    
+    
+    return car
+generate_random_car(CAR_DATA) ## Note: This has to go after 'return' ## 
 # -----------------------------------------
 # CHALLENGE PART 3: Generate Car Inventory
 # -----------------------------------------
