@@ -22,7 +22,6 @@ class Car:
         self.price = price
         self.mileage = mileage
         self.condition = condition
-        self.test = "badgers"
 
 # ----------------------------------------
 # CHALLENGE PART 2: Random Car Generation
