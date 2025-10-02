@@ -90,6 +90,8 @@ def create_inventory(num_cars:int=5000) -> list[Car]:
     """Generate a list of random cars"""
     # TODO: Use the `generate_random_car()` function above; either loop or list comprehension.
     inventory = []
+    #for x in range(5000):
+
     return inventory
 
 inventory = create_inventory(5000)
