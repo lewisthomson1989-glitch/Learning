@@ -80,6 +80,7 @@ def generate_random_car(random_car_data) -> Car:
     
     
     return car
+
 generate_random_car(CAR_DATA) ## Note: This has to go after 'return' ## 
 # -----------------------------------------
 # CHALLENGE PART 3: Generate Car Inventory
@@ -90,7 +91,9 @@ def create_inventory(num_cars:int=5000) -> list[Car]:
     """Generate a list of random cars"""
     # TODO: Use the `generate_random_car()` function above; either loop or list comprehension.
     inventory = []
-    #for x in range(5000):
+    for _ in range(5000):
+        num_cars = generate_random_car(CAR_DATA) 
+    print(num_cars)
 
     return inventory
 
