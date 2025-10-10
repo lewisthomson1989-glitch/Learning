@@ -61,7 +61,7 @@ def generate_random_car() -> Car:
 
     """
     return Car(
-        
+
         make= random.choice(CAR_DATA['makes']),
         model= random.choice(CAR_DATA['models']), ## Note: Remember to populate these (not 'none'). ##
         colour= random.choice(CAR_DATA['colors']),
@@ -104,64 +104,75 @@ def find_cars_by_make(cars:list[Car], make:str) -> list[Car]:
             result.append(car)
     return result
 
-r = find_cars_by_make(inventory, "Volkswagen")
-print(r[0].make, r[0].model)
-
+#r = find_cars_by_make(inventory, "Volkswagen")
+#print(r[0].make, r[0].model)
 
 def find_affordable_cars(cars:list[Car], max_price:int) -> list[Car]:
     """Find all cars under a certain price"""
     result = []
 
-    for cost in cars:
-        if cost.price <= max_price:
-            result.append(cost) 
-        
-            
+    for car in cars:
+        if car.price <= max_price:
+            result.append(car) 
             
     return result
 
-print(find_affordable_cars(inventory, 30000)[0].price)
-
-
+#print(find_affordable_cars(inventory, 30000)[0].price)
 
 def find_low_mileage_cars(cars:list[Car], max_mileage:int) -> list[Car]:
     """Find all cars with mileage below a threshold"""
     result = []
 
-    for miles in cars:
-        if miles.mileage <= max_mileage:
-            result.append(miles)
+    for car in cars:
+        if car.mileage <= max_mileage:
+            result.append(car)
     return result
 
-print(find_low_mileage_cars(inventory, 12000)[0].mileage)
+#print(find_low_mileage_cars(inventory, 12000)[0].mileage)
 
 def find_newest_cars(cars:list[Car], min_year:int) -> list[Car]:
     """Find all cars from a specific year or newer"""
     result = []
 
-    for age in cars:
-        if age.year >= min_year:
-            result.append(age)
+    for car in cars:
+        if car.year >= min_year:
+            result.append(car)
     return result
 
 print(find_newest_cars(inventory, 2022)[0].year)
 
-def get_average_price_by_make(cars:list[Car], make:str, price:int) -> int:
+def get_average_price_by_make(cars:list[Car], make:str) -> int:
     """Calculate the average price for a specific make"""
     result = 0
+
+    #for car in cars:
+    #    car.make == find_cars_by_make()
+    #    if make == car.make:
+    #        for n in Car.price:
+    #            result += n
+    #            result = result / len(Car.price)
+    #            print(result)
+
+    cars = find_cars_by_make(cars, make)
+
+    prices = []  # A list holds unlimited number or objects.
+    for car in cars:
+        prices.append(car.price)
+
+    result = sum(prices) / len(prices)
+
+    return int(result)
     
+print(get_average_price_by_make(inventory, "Honda"))
 
-    if make == make:
-        for average in cars:    
-            average = sum(price) / len(price)
-        result.append(average)
-    print(result)        
-        
-         
-        
-    return result
 
-get_average_price_by_make(inventory,make= "Honda")
+inv2 = create_inventory(100000)
+inv2 = find_cars_by_make(inv2, "BMW")
+inv2 = find_affordable_cars(inv2, 30000)
+inv2 = find_newest_cars(inv2, 2020)
+for c in inv2:
+    if c.colour == "Green" and c.model == "Wagon":
+        print(c.make, c.model, c.colour, c.condition, c.mileage, c.price)
 
 # ----------------------------------
 # CHALLENGE PART 5: Test Your Code!
