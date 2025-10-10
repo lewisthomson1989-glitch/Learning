@@ -61,6 +61,7 @@ def generate_random_car() -> Car:
 
     """
     return Car(
+        
         make= random.choice(CAR_DATA['makes']),
         model= random.choice(CAR_DATA['models']), ## Note: Remember to populate these (not 'none'). ##
         colour= random.choice(CAR_DATA['colors']),
