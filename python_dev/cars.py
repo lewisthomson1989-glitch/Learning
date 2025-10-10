@@ -60,9 +60,7 @@ def generate_random_car() -> Car:
     Returns: A new Car object with random attributes
 
     """
-    
     return Car(
-        
         make= random.choice(CAR_DATA['makes']),
         model= random.choice(CAR_DATA['models']), ## Note: Remember to populate these (not 'none'). ##
         colour= random.choice(CAR_DATA['colors']),
@@ -70,10 +68,8 @@ def generate_random_car() -> Car:
         year= random.randint(2010, 2025), 
         price= random.randint(5000, 80000),
         mileage= random.randint(0, 150000)  
-
     )
     
-
 generate_random_car() ## Note: This has to go after 'return' ## 
 # -----------------------------------------
 # CHALLENGE PART 3: Generate Car Inventory
@@ -152,8 +148,8 @@ print(find_newest_cars(inventory, 2022)[0].year)
 def get_average_price_by_make(cars:list[Car], make:str, price:int) -> int:
     """Calculate the average price for a specific make"""
     result = 0
-
     
+
     if make == make:
         for average in cars:    
             average = sum(price) / len(price)
