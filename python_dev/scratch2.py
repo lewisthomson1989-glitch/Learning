@@ -78,4 +78,45 @@ for n in range(1,6):
     for x in range(n):
         print(n, end=" ")
     print("\n")
-        
+
+
+
+#Check Palindrome number:
+
+def palindrome(num):
+
+    n_string = str(num)
+    r_string = n_string[::-1]
+
+    if n_string == r_string:
+        return True
+    else:
+        return False
+    
+print(palindrome(121))
+print(palindrome(125))
+print(palindrome(2245422))
+
+
+
+# Merge two lists with odds from list one and evens from list two:
+def merge_list(num_list1, num_list2):
+    list = []
+    
+    for n in num_list1:
+        if n % 2 != 0:
+            list.append(n)
+    for n in num_list2:
+        if n % 2 == 0:
+            list.append(n)
+    return list
+    
+num_list1 = [10, 20, 25, 30, 35]
+num_list2 = [40, 45, 60, 75, 90]    
+    
+print(merge_list(num_list1, num_list2))
+
+
+
+# Get each digit from a number in reverse order:
+number = 7536
