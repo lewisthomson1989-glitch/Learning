@@ -166,22 +166,22 @@ def get_average_price_by_make(cars:list[Car], make:str) -> int:
 print(get_average_price_by_make(inventory, "Honda"))
 
 
-inv2 = create_inventory(100000)
-inv2 = find_cars_by_make(inv2, "BMW")
-inv2 = find_affordable_cars(inv2, 30000)
-inv2 = find_newest_cars(inv2, 2020)
-for c in inv2:
-    if c.colour == "Green" and c.model == "Wagon":
-        print(c.make, c.model, c.colour, c.condition, c.mileage, c.price)
+#inv2 = create_inventory(100000)
+#inv2 = find_cars_by_make(inv2, "BMW")
+#inv2 = find_affordable_cars(inv2, 30000)
+#inv2 = find_newest_cars(inv2, 2020)
+#for c in inv2:
+#    if c.colour == "Green" and c.model == "Wagon":
+#        print(c.make, c.model, c.colour, c.condition, c.mileage, c.price)
 
 # ----------------------------------
 # CHALLENGE PART 5: Test Your Code!
 # ----------------------------------
 # TODO: Uncomment and run these tests once you've implemented everything
 
-# print(f"Total cars in inventory: {len(inventory)}")
-# print(f"Toyota cars: {len(find_cars_by_make(inventory, 'Toyota'))}")
-# print(f"Cars under $20,000: {len(find_affordable_cars(inventory, 20000))}")
-# print(f"Low mileage cars (<30k): {len(find_low_mileage_cars(inventory, 30000))}")
-# print(f"Cars from 2020+: {len(find_newest_cars(inventory, 2020))}")
-# print(f"Average BMW price: ${get_average_price_by_make(inventory, 'BMW'):,.2f}")
+print(f"Total cars in inventory: {len(inventory)}")
+print(f"Toyota cars: {len(find_cars_by_make(inventory, 'Toyota'))}")
+print(f"Cars under $20,000: {len(find_affordable_cars(inventory, 20000))}")
+print(f"Low mileage cars (<30k): {len(find_low_mileage_cars(inventory, 30000))}")
+print(f"Cars from 2020+: {len(find_newest_cars(inventory, 2020))}")
+print(f"Average BMW price: ${get_average_price_by_make(inventory, 'BMW'):,.2f}")
