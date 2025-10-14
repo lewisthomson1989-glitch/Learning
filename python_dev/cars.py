@@ -50,8 +50,10 @@ CAR_DATA = {
 }
 
 class Inventory:
-    def __init__(self, num_cars:int=5000):
+    def __init__(self, num_cars:int=5000): # Moved 'make:str' before 'num_cars" as it did't like being after it.
         self.cars = self.create_inventory(num_cars)
+        #self.find_make = self.find_cars_by_make() # Not sure if 'find_make' is correct. Does not need to be here.
+
 
     def generate_random_car(self) -> Car:  
         """
@@ -74,7 +76,7 @@ class Inventory:
             mileage= random.randint(0, 150000)  
         )
     
-    def create_inventory(self, num_cars) -> list[Car]:
+    def create_inventory(self, num_cars:int=5000) -> list[Car]:
         """Generate a list of random cars"""
         # TODO: Use the `generate_random_car()` function above; either loop or list comprehension.
         inventory = []
@@ -84,9 +86,24 @@ class Inventory:
     
         return inventory
 
+    def find_cars_by_make(self, make:str) -> list[Car]:
+        """Find all cars of a specific make"""
+        result = []
 
-inv = Inventory()
-print(len(inv.cars))
+        for car in self.cars:
+            if car.make == make:
+                result.append(car)
+        return result
+
+    #print(find_cars_by_make()) # I am missing something here.... and/or incorrect.
+
+inv = Inventory() 
+print(len(inv.find_cars_by_make("BMW")))
+print(len(inv.find_cars_by_make("Honda")))
+
+    
+
+
 # -----------------------------------------
 # CHALLENGE PART 3: Generate Car Inventory
 # -----------------------------------------
@@ -98,14 +115,6 @@ print(len(inv.cars))
 # --------------------------------------
 # TODO: Write functions to answer these questions:
 
-def find_cars_by_make(cars:list[Car], make:str) -> list[Car]:
-    """Find all cars of a specific make"""
-    result = []
-    
-    for car in cars:
-        if car.make == make:
-            result.append(car)
-    return result
 
 #r = find_cars_by_make(inventory, "Volkswagen")
 #print(r[0].make, r[0].model)
