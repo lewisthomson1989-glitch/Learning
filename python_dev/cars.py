@@ -49,45 +49,48 @@ CAR_DATA = {
     }
 }
 
-def generate_random_car() -> Car:  
-    """
-    TODO: Create a function that generates a random car using:
-    - random.choice() ntto pick from the dictionaries above
-    - random.randint() for year (e.g., 2010-2024)
-    - random.randint() for price (e.g., 5000-80000)
-    - random.randint() for mileage (e.g., 0-150000)
-    
-    Returns: A new Car object with random attributes
+class Inventory:
+    def __init__(self, num_cars:int=5000):
+        self.cars = self.create_inventory(num_cars)
 
-    """
-    return Car(
+    def generate_random_car(self) -> Car:  
+        """
+        TODO: Create a function that generates a random car using:
+        - random.choice() ntto pick from the dictionaries above
+        - random.randint() for year (e.g., 2010-2024)
+        - random.randint() for price (e.g., 5000-80000)
+        - random.randint() for mileage (e.g., 0-150000)
 
-        make= random.choice(CAR_DATA['makes']),
-        model= random.choice(CAR_DATA['models']), ## Note: Remember to populate these (not 'none'). ##
-        colour= random.choice(CAR_DATA['colors']),
-        condition= random.choice(CAR_DATA['conditions']),
-        year= random.randint(2010, 2025), 
-        price= random.randint(5000, 80000),
-        mileage= random.randint(0, 150000)  
-    )
+        Returns: A new Car object with random attributes
+
+        """
+        return Car(
+            make= random.choice(CAR_DATA['makes']),
+            model= random.choice(CAR_DATA['models']), ## Note: Remember to populate these (not 'none'). ##
+            colour= random.choice(CAR_DATA['colors']),
+            condition= random.choice(CAR_DATA['conditions']),
+            year= random.randint(2010, 2025), 
+            price= random.randint(5000, 80000),
+            mileage= random.randint(0, 150000)  
+        )
     
-generate_random_car() ## Note: This has to go after 'return' ## 
+    def create_inventory(self, num_cars) -> list[Car]:
+        """Generate a list of random cars"""
+        # TODO: Use the `generate_random_car()` function above; either loop or list comprehension.
+        inventory = []
+        for _ in range(num_cars):
+            inventory.append(self.generate_random_car()) 
+        #print(num_cars)
+    
+        return inventory
+
+
+inv = Inventory()
+print(len(inv.cars))
 # -----------------------------------------
 # CHALLENGE PART 3: Generate Car Inventory
 # -----------------------------------------
-# TODO: Create a list of 5000 random cars
 
-def create_inventory(num_cars:int=5000) -> list[Car]:
-    """Generate a list of random cars"""
-    # TODO: Use the `generate_random_car()` function above; either loop or list comprehension.
-    inventory = []
-    for _ in range(num_cars):
-        inventory.append(generate_random_car()) 
-    #print(num_cars)
-    
-    return inventory
-
-inventory = create_inventory()
 #print(inventory) ## add attribute to return as string. example ".make" ##
 
 # --------------------------------------
@@ -139,7 +142,7 @@ def find_newest_cars(cars:list[Car], min_year:int) -> list[Car]:
             result.append(car)
     return result
 
-print(find_newest_cars(inventory, 2022)[0].year)
+#print(find_newest_cars(inventory, 2022)[0].year)
 
 def get_average_price_by_make(cars:list[Car], make:str) -> int:
     """Calculate the average price for a specific make"""
@@ -163,7 +166,7 @@ def get_average_price_by_make(cars:list[Car], make:str) -> int:
 
     return int(result)
     
-print(get_average_price_by_make(inventory, "Honda"))
+#print(get_average_price_by_make(inventory, "Honda"))
 
 
 #inv2 = create_inventory(100000)
@@ -179,9 +182,9 @@ print(get_average_price_by_make(inventory, "Honda"))
 # ----------------------------------
 # TODO: Uncomment and run these tests once you've implemented everything
 
-print(f"Total cars in inventory: {len(inventory)}")
-print(f"Toyota cars: {len(find_cars_by_make(inventory, 'Toyota'))}")
-print(f"Cars under $20,000: {len(find_affordable_cars(inventory, 20000))}")
-print(f"Low mileage cars (<30k): {len(find_low_mileage_cars(inventory, 30000))}")
-print(f"Cars from 2020+: {len(find_newest_cars(inventory, 2020))}")
-print(f"Average BMW price: ${get_average_price_by_make(inventory, 'BMW'):,.2f}")
+#print(f"Total cars in inventory: {len(inventory)}")
+#print(f"Toyota cars: {len(find_cars_by_make(inventory, 'Toyota'))}")
+#print(f"Cars under $20,000: {len(find_affordable_cars(inventory, 20000))}")
+#print(f"Low mileage cars (<30k): {len(find_low_mileage_cars(inventory, 30000))}")
+#print(f"Cars from 2020+: {len(find_newest_cars(inventory, 2020))}")
+#print(f"Average BMW price: ${get_average_price_by_make(inventory, 'BMW'):,.2f}")
