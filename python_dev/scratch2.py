@@ -7,7 +7,7 @@ for n in range(1,11):
     x_sum = previous_num + n 
 print("Current", n, "Previous", previous_num, "Sum:", x_sum)
 
-
+print('-' * 20)
 
 # Print characters present at an even index number:
 content = "PYnative"
@@ -26,7 +26,7 @@ def remove_chars(content, n):
 print(remove_chars("pynative", 4))
 print(remove_chars("badgers", 2))
 
-
+print('-' * 20)
 
 # Are first and last numbers the same?:
 def first_last(number_list):
@@ -48,7 +48,7 @@ numbers_y = [75, 65, 35, 75, 30]
 print(first_last(numbers_x))
 print(first_last(numbers_y))
 
-
+print('-' * 20)
 
 # All numbers divisible by 5:
 num_list = [10, 20, 33, 46, 55]
@@ -57,7 +57,7 @@ for n in num_list:
     if n % 5 == 0:
         print("Divisible by 5:", n)
 
-
+print('-' * 20)
 
 # How many times does word appear:
 x  = " Emma is a good developer, Emma is a writer"
@@ -65,7 +65,7 @@ x  = " Emma is a good developer, Emma is a writer"
 name = x.count('Emma')
 print("name appears", name, "times")
 
-
+print('-' * 20)
 
 # Print the pattern:
 #1
@@ -79,7 +79,7 @@ for n in range(1,6):
         print(n, end=" ")
     print("\n")
 
-
+print('-' * 20)
 
 #Check Palindrome number:
 
@@ -97,7 +97,7 @@ print(palindrome(121))
 print(palindrome(125))
 print(palindrome(2245422))
 
-
+print('-' * 20)
 
 # Merge two lists with odds from list one and evens from list two:
 def merge_list(num_list1, num_list2):
@@ -116,7 +116,45 @@ num_list2 = [40, 45, 60, 75, 90]
     
 print(merge_list(num_list1, num_list2))
 
-
+print('-' * 20)
 
 # Get each digit from a number in reverse order:
 number = 7536
+
+while number > 0:
+    digit = number % 10
+    number = number // 10
+    print(digit, end=' ')
+    
+
+print('-' * 20)
+# Income Tax calculator:
+
+income = 45000
+tax_pay = 0
+
+if income <= 10000:
+    tax_pay = 0
+elif income <=20000:
+    x = income - 10000
+    tax_pay = x * 10 / 100
+else:
+    tax_pay = 0
+    tax_pay = 10000 * 10 / 100
+    tax_pay += (income - 20000) * 20 / 100
+    print('\n')
+    print(tax_pay)
+
+print('-' * 20)
+
+# Print Multiplication table from 1 to 10:
+
+for i in range(1, 11):
+    for j in range(1, 11):
+        print(i * j, end=',')
+    print('\n')    
+
+print('-' * 20)
+
+# Print a downward half-pyramid pattern of stars:
+
