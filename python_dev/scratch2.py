@@ -124,7 +124,7 @@ number = 7536
 while number > 0:
     digit = number % 10
     number = number // 10
-    print(digit, end=' ')
+    print(digit)
     
 
 print('-' * 20)
@@ -157,4 +157,65 @@ for i in range(1, 11):
 print('-' * 20)
 
 # Print a downward half-pyramid pattern of stars:
+
+rows = 5
+
+for i in range(rows + 1, 0, -1):
+    for j in range(0, i -1):
+        print('*', end= " ")
+    print("")
+
+print('-' * 20)
+
+# Get an int value of base raises to the power of exponent:
+
+def exponent(base, exp):
+    result = base ** exp  
+    print(result)
+
+exponent(2, 5)
+
+print('-' * 20)
+
+# Check if number is palindrome:
+def is_palindrome(num):
+    original = num
+    rev_num = 0
+    while num > 0:
+        digit = num % 10
+        rev_num = rev_num *10 + digit
+        num //= 10
+    return original == rev_num
+
+print(is_palindrome(121))
+print(is_palindrome(123))
+
+print('-' * 20)
+
+# Generate Fibonacci series upto 15 terms:
+
+def fibonacci_iterative(n):
+    fib_seq = []
+    a, b = 0, 1
+    for _ in range(n):
+        fib_seq.append(a)
+        a, b = b, a + b
+    return fib_seq
+print(fibonacci_iterative(15))
+
+print('-' * 20)
+
+#Check if a given year is a leap year:
+
+def is_leap_year(year):
+    if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
+        return True
+    else:
+        return False
+                        
+print(is_leap_year(1900))
+            
+print('-' * 20)
+
+# Print Alternate Prime Numbers till 20:
 

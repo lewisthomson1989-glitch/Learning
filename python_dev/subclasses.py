@@ -6,7 +6,7 @@ class Mammal:
 
 class Dog(Mammal):
     def __init__(self):
-        super().__init__()
+        super().__init__
         self.num_paws = 4
 
 

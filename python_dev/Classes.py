@@ -3,7 +3,6 @@ from datetime import date
 today = date.today()
 CURRENT_YEAR = today.year  # Block caps means a constant that is never going to change, technically year can change, but for this scope, it's fine.
 
-
 class Trim:
     def __init__(self, features):
         self.features = features

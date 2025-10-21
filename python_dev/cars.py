@@ -202,7 +202,7 @@ inv = Inventory()
 # ----------------------------------
 # TODO: Uncomment and run these tests once you've implemented everything
 
-print(f"Total cars in inventory: {len(inv.create_inventory())}")
+print(f"Total cars in inventory: {len(inv.cars)}")
 print(f"Toyota cars: {len(inv.find_cars_by_make('Toyota'))}")
 print(f"Cars under $20,000: {len(inv.find_affordable_cars(20000))}")
 print(f"Low mileage cars (<30k): {len(inv.find_low_mileage_cars(30000))}")
