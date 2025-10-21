@@ -152,7 +152,7 @@ print('-' * 20)
 for i in range(1, 11):
     for j in range(1, 11):
         print(i * j, end=',')
-    print('\n')    
+    print()    
 
 print('-' * 20)
 
@@ -218,4 +218,48 @@ print(is_leap_year(1900))
 print('-' * 20)
 
 # Print Alternate Prime Numbers till 20:
+
+def is_prime(num):
+    
+    if n <= 1:
+        return False
+    
+    for i in range(2, num):
+        if num % i == 0:
+            return False
+    return True
+        
+
+n = 20
+primes = []
+for num in range(2, n + 1):
+    if is_prime(num):
+        primes.append(num)
+
+for i in range(0, len(primes), 2):
+    print(primes[i])        
+
+print('-' * 20)
+
+# Print reverse number pattern:
+
+#1 1 1 1 1
+#2 2 2 2 
+#3 3 3
+#4 4
+#5   
+def reverse_pyramid(rows):
+
+    for n in range(1,rows + 1):
+        for x in range(rows - n + 1):
+            print(n, end=" ")
+        print() 
+
+reverse_pyramid(5)
+
+print('-' * 20)
+        
+        
+# Check if a user-entered string contains any digits using a for loop:
+
 
