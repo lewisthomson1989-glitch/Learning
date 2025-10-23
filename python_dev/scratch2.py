@@ -263,3 +263,11 @@ print('-' * 20)
 # Check if a user-entered string contains any digits using a for loop:
 
 
+user = input(f"Username:")
+
+for char in user:
+    if char.isdigit():
+        print("Yes")
+    else:
+        print("No")
+    
