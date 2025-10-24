@@ -262,12 +262,32 @@ print('-' * 20)
         
 # Check if a user-entered string contains any digits using a for loop:
 
+#def has_digit(user):
 
 user = input(f"Username:")
 
 for char in user:
     if char.isdigit():
+        #return True
         print("Yes")
     else:
-        print("No")
-    
+      # return False
+      print("No")  
+#print(has_digit(input()))
+print('-' * 20)
+# Capitalizxe the first letter of each word in a string:
+
+def cap_words(text):
+
+
+    words = text.split()
+    cap_words = [word.capitalize() for word in words]
+    return " ".join(cap_words)
+
+
+str1 = "pynative.com is for python lovers"
+cap_string = cap_words(str1)
+print(cap_string)
+
+print('-' * 20)
+
