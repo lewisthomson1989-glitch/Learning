@@ -156,7 +156,7 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
-        if game_over == 0:
+        if game_over == False:
             if event.type == pygame.MOUSEBUTTONDOWN and clicked == False:
                 clicked = True
         if event.type == pygame.MOUSEBUTTONUP and clicked == True:
