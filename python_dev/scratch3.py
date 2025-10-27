@@ -159,15 +159,15 @@ while run:
         if game_over == False:
             if event.type == pygame.MOUSEBUTTONDOWN and clicked == False:
                 clicked = True
-        if event.type == pygame.MOUSEBUTTONUP and clicked == True:
-            clicked = False
-            pos = pygame.mouse.get_pos()
-            cell_x = pos[0]
-            cell_y = pos[1]
-            if markers[cell_x // 100][cell_y // 100] == 0:
-                markers[cell_x // 100][cell_y // 100] = player
-                player *= -1
-                check_winner()
+            if event.type == pygame.MOUSEBUTTONUP and clicked == True:
+                clicked = False
+                pos = pygame.mouse.get_pos()
+                cell_x = pos[0]
+                cell_y = pos[1]
+                if markers[cell_x // 100][cell_y // 100] == 0:
+                    markers[cell_x // 100][cell_y // 100] = player
+                    player *= -1
+                    check_winner()
 
     if game_over == True:
         draw_winner(winner)
