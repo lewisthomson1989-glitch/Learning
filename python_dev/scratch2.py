@@ -291,3 +291,16 @@ print(cap_string)
 
 print('-' * 20)
 
+# Create a simple countdown timer using a while loop:
+
+import time
+
+def countdowm_timer(seconds:int):
+
+    while seconds > 0:
+        print(f"Time remaining: {seconds}")
+        time.sleep(1)
+        seconds -= 1
+    print("Times Up!")
+
+countdowm_timer(20)
