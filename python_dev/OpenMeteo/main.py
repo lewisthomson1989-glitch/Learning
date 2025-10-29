@@ -27,7 +27,9 @@ params = {"latitude": CITIES['London'][0],
           "timezone": "auto",
           }
 print(params)
-
+# for loop needed to be used for each city.
+for city in CITIES.keys():
+    print(city)
 responses = openmeteo.weather_api(API_URL, params=params)
 
 response = responses[0]
