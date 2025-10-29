@@ -303,4 +303,43 @@ def countdowm_timer(seconds:int):
         seconds -= 1
     print("Times Up!")
 
-countdowm_timer(20)
+countdowm_timer(3)
+
+# Accept numbers from User:
+
+number1 = int(input("Enter First Number: "))
+number2 = int(input("Enter Second Number: "))
+
+print(number1 * number2)
+
+# Format output String:
+
+str1 = 'My'
+str2 = 'Name'
+str3 = 'Is'
+str4 = 'James'
+
+print(str1, str2, str3, str4, sep="**")
+
+# Display Decimal number to Octal using print() function:
+num = 8
+
+print('%o' % num)
+
+# Display Float Number with 2 Decimal Places:
+
+num = 458.541315
+
+print('%.2f' % num)
+
+# Accept a list of 5 float numbers as an input from the user:
+
+numbers = []
+
+for i in range(5):
+    res = input(f"Enter number {i + 1}: ")
+    numbers.append(float(res))
+
+
+for i in numbers:
+    print(i)
