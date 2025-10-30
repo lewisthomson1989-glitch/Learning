@@ -64,9 +64,11 @@ print(WEATHER)
 #	1a. Find city with highest/lowest average temperature.
 #	1b. Identify warmest/coldest day per city.
 #	1c. Calculate temperature ranges (min-max) per city, per day.
-precip_column = df['precip_sum']
-print(precip_column)
+precip_column = WEATHER.iloc[:, 1]
 
+first_col = df.iloc[:, 1] #^^^ Same as above^^^.
+print(precip_column)
+print(first_col)
 ###############################################################################
 
 # TODO: 2 - Visualisation.
