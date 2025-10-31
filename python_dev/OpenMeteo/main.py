@@ -29,7 +29,7 @@ for city in CITIES:
 	params = {
 		"latitude": city["latitude"],
 		"longitude": city["longitude"],
-		"daily": ["precipitation_sum", "temperature_2m_min", "temperature_2m_max"],
+		"daily": ["precipitation_sum", "temperature_2m_max", "temperature_2m_min"],
 	}
 
 	responses = openmeteo.weather_api(API_URL, params=params)
@@ -64,11 +64,26 @@ print(WEATHER)
 #	1a. Find city with highest/lowest average temperature.
 #	1b. Identify warmest/coldest day per city.
 #	1c. Calculate temperature ranges (min-max) per city, per day.
-precip_column = WEATHER.iloc[:, 1]
+#dataframes = {name: group for name, group in WEATHER.groupby('city')}
+#print(dataframes['Tokyo'])
 
-first_col = df.iloc[:, 1] #^^^ Same as above^^^.
-print(precip_column)
-print(first_col)
+avg_max = WEATHER.groupby('city', as_index=False)['temp_max'].mean()
+print(avg_max)
+
+average_max = WEATHER.loc['Sydney', 'temp_max']
+for a in average_max:
+	average = average_max.mean()
+print(average)
+
+
+#precip_column = WEATHER.loc['Tokyo', 'precip_sum']
+#for n in precip_column:
+#    average_precip = precip_column.mean()
+#print(precip_column)
+#print(average_precip)
+#first_col = df.iloc[:, 1] 
+#print(first_col)
+
 ###############################################################################
 
 # TODO: 2 - Visualisation.
