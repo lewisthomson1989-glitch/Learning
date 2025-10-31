@@ -62,14 +62,26 @@ print(WEATHER)
 
 # TODO: 1 - Analysis.
 #	1a. Find city with highest/lowest average temperature.
+#1a - Highest/Lowest average temp.
+WEATHER["temp_avg"] = (WEATHER["temp_min"] + WEATHER["temp_max"]) / 2
+city_avg_temps = WEATHER.groupby("city")["temp_avg"].mean()
+print(city_avg_temps)  # pd.Series, not pd.DataFrame
+avg_temps = {
+        "highest": {"name": city_avg_temps.idxmax(), "temp": city_avg_temps.max()},
+        "lowest": {"name": city_avg_temps.idxmin(), "temp": city_avg_temps.min()}
+}
+print(avg_temps)
 #	1b. Identify warmest/coldest day per city.
+#2a - Warmest/Coldest absolute temp.
+abs_temps = {
+    "higest": {"name": WEATHER["temp_max"].idxmax(), "temp": None},
+    "lowest": {"name": None, "temp": None}
+}
+print(abs_temps)
 #	1c. Calculate temperature ranges (min-max) per city, per day.
-#dataframes = {name: group for name, group in WEATHER.groupby('city')}
-#print(dataframes['Tokyo'])
 
-avg_max = WEATHER.groupby('city', as_index=False)['temp_max'].mean()
-print(avg_max)
 
+# Checking average calc from above is correct.
 average_max = WEATHER.loc['Sydney', 'temp_max']
 for a in average_max:
 	average = average_max.mean()
