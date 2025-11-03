@@ -39,6 +39,7 @@ for city in CITIES:
 	daily_precipitation_sum = daily.Variables(0).ValuesAsNumpy()
 	daily_temperature_2m_max = daily.Variables(1).ValuesAsNumpy()
 	daily_temperature_2m_min = daily.Variables(2).ValuesAsNumpy()
+    
 
 	daily_data = {"date": pd.date_range(
     	start = pd.to_datetime(daily.Time(), unit="s", utc=True),
@@ -48,7 +49,8 @@ for city in CITIES:
     ),
     	"precip_sum": daily_precipitation_sum,
     	"temp_min": daily_temperature_2m_min,
-    	"temp_max": daily_temperature_2m_max
+    	"temp_max": daily_temperature_2m_max,
+		
     }
 
 	df = pd.DataFrame(data=daily_data)
@@ -62,7 +64,7 @@ print(WEATHER)
 
 # TODO: 1 - Analysis.
 #	1a. Find city with highest/lowest average temperature.
-#1a - Highest/Lowest average temp.
+
 WEATHER["temp_avg"] = (WEATHER["temp_min"] + WEATHER["temp_max"]) / 2
 city_avg_temps = WEATHER.groupby("city")["temp_avg"].mean()
 print(city_avg_temps)  # pd.Series, not pd.DataFrame
@@ -72,10 +74,11 @@ avg_temps = {
 }
 print(avg_temps)
 #	1b. Identify warmest/coldest day per city.
-#2a - Warmest/Coldest absolute temp.
+city_high = WEATHER.groupby(['city', 'date'])["temp_max"].max()
+city_low = WEATHER.groupby(['city', 'date'])["temp_min"].min()
 abs_temps = {
-    "higest": {"name": WEATHER["temp_max"].idxmax(), "temp": None},
-    "lowest": {"name": None, "temp": None}
+    "highest": {"name": city_high.idxmax(), "temp": city_high.max()},
+    "lowest": {"name": city_low.idxmin(), "temp": city_low.min()}
 }
 print(abs_temps)
 #	1c. Calculate temperature ranges (min-max) per city, per day.
