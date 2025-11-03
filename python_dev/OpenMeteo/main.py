@@ -2,6 +2,8 @@ import openmeteo_requests
 import pandas as pd
 import requests_cache
 from retry_requests import retry
+import matplotlib.pyplot as plt
+import time
 
 # Tools: requests, pandas, numpy, matplotlib, seaborn (a virtual environment)
 
@@ -61,7 +63,7 @@ for city in CITIES:
 
 WEATHER = pd.concat(WEATHER, ignore_index=True)
 WEATHER = WEATHER.set_index(["city", "date"])
-print(WEATHER)
+
 ###############################################################################
 
 # TODO: 1 - Analysis.
@@ -112,9 +114,20 @@ print(city_max_wind)
 
 ###############################################################################
 
+print(WEATHER)
+
 # TODO: 2 - Visualisation.
 #	2a. Line plot - Temperature trends over 7 days for all cities.
-
+plt.plot(WEATHER.unstack(1)["temp_avg"], label='temp_avg', marker='o', linestyle='-', color='green')
+plt.plot(WEATHER.unstack(1)["temp_max"], label='Max temp', marker='o', linestyle='-', color='red')
+plt.plot(WEATHER.unstack(1)["temp_min"], label='Min Temp', marker='o', linestyle='-', color='blue')
+plt.xlabel("Cities")
+plt.ylabel("Temp")
+plt.title("Cities average temps")
+plt.legend()
+plt.show()
+time.sleep(10)
+plt.close()
 
 #	2b. Bar chart - Average temperature by city.
 #	2c. Line plot - Temperature range (min-max) per city, per day.
