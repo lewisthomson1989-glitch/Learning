@@ -29,7 +29,7 @@ for city in CITIES:
 	params = {
 		"latitude": city["latitude"],
 		"longitude": city["longitude"],
-		"daily": ["precipitation_sum", "temperature_2m_max", "temperature_2m_min"],
+		"daily": ["precipitation_sum", "temperature_2m_max", "temperature_2m_min", "wind_speed_10m_max"],
 	}
 
 	responses = openmeteo.weather_api(API_URL, params=params)
@@ -39,6 +39,7 @@ for city in CITIES:
 	daily_precipitation_sum = daily.Variables(0).ValuesAsNumpy()
 	daily_temperature_2m_max = daily.Variables(1).ValuesAsNumpy()
 	daily_temperature_2m_min = daily.Variables(2).ValuesAsNumpy()
+	daily_wind_speed_10m_max = daily.Variables(3).ValuesAsNumpy()
     
 
 	daily_data = {"date": pd.date_range(
@@ -50,6 +51,7 @@ for city in CITIES:
     	"precip_sum": daily_precipitation_sum,
     	"temp_min": daily_temperature_2m_min,
     	"temp_max": daily_temperature_2m_max,
+		"wind_max": daily_wind_speed_10m_max
 		
     }
 
@@ -82,13 +84,22 @@ abs_temps = {
 }
 print(abs_temps)
 #	1c. Calculate temperature ranges (min-max) per city, per day.
+WEATHER["temp_range"] = WEATHER["temp_max"] - WEATHER["temp_min"]
+city_range = WEATHER.groupby(['city', 'date'])["temp_range"].first()
+print(city_range)
+
+# 1d. Calculate the daily max wind speed for each city.
+city_max_wind = WEATHER.groupby(['city', 'date'])["wind_max"].max()
+print(city_max_wind)
+
+
 
 
 # Checking average calc from above is correct.
-average_max = WEATHER.loc['Sydney', 'temp_max']
-for a in average_max:
-	average = average_max.mean()
-print(average)
+#average_max = WEATHER.loc['Sydney', 'temp_max']
+#for a in average_max:
+#	average = average_max.mean()
+#print(average)
 
 
 #precip_column = WEATHER.loc['Tokyo', 'precip_sum']
@@ -103,6 +114,8 @@ print(average)
 
 # TODO: 2 - Visualisation.
 #	2a. Line plot - Temperature trends over 7 days for all cities.
+
+
 #	2b. Bar chart - Average temperature by city.
 #	2c. Line plot - Temperature range (min-max) per city, per day.
 
