@@ -4,6 +4,7 @@ import requests_cache
 from retry_requests import retry
 import matplotlib.pyplot as plt
 import time
+import numpy as np
 
 # Tools: requests, pandas, numpy, matplotlib, seaborn (a virtual environment)
 
@@ -62,7 +63,8 @@ for city in CITIES:
 	WEATHER.append(df)
 
 WEATHER = pd.concat(WEATHER, ignore_index=True)
-WEATHER = WEATHER.set_index(["city", "date"])
+#print(WEATHER)
+#WEATHER = WEATHER.set_index(["city", "date"])
 
 ###############################################################################
 
@@ -115,21 +117,36 @@ print(city_max_wind)
 ###############################################################################
 
 print(WEATHER)
+print(WEATHER.columns)
 
+bar_width = 0.25 + 1
+
+
+
+
+plt.bar(WEATHER["date"], WEATHER["temp_max"], width=bar_width, color="orange", edgecolor="black")
+plt.bar(WEATHER["date"], WEATHER["temp_min"], width=bar_width, color="green", edgecolor="black")
+plt.bar(WEATHER["date"], WEATHER["temp_avg"], width=bar_width, color="purple", edgecolor="black")
 # TODO: 2 - Visualisation.
 #	2a. Line plot - Temperature trends over 7 days for all cities.
-plt.plot(WEATHER.unstack(1)["temp_avg"], label='temp_avg', marker='o', linestyle='-', color='green')
-plt.plot(WEATHER.unstack(1)["temp_max"], label='Max temp', marker='o', linestyle='-', color='red')
-plt.plot(WEATHER.unstack(1)["temp_min"], label='Min Temp', marker='o', linestyle='-', color='blue')
+plt.bar(WEATHER["date"], WEATHER["temp_max"]-WEATHER["temp_min"], width=0.25, bottom=WEATHER["temp_min"], color='lightblue', edgecolor='black')
+
+#plt.bar(WEATHER["city"], WEATHER["temp_max"], color='red')
+#plt.bar(WEATHER["city"], WEATHER["temp_min"], color='blue')
 plt.xlabel("Cities")
-plt.ylabel("Temp")
+plt.ylabel("Temperature (°C)")
 plt.title("Cities average temps")
 plt.legend()
 plt.show()
-time.sleep(10)
+#time.sleep(10)
 plt.close()
 
 #	2b. Bar chart - Average temperature by city.
+
+#plt.bar(WEATHER[:7]["temp_max"], color='red')
+#plt.bar(WEATHER[:7]["temp_min"], color='blue')
+#plt.bar(WEATHER["temp_max"], height=0.2)
+#plt.show()
 #	2c. Line plot - Temperature range (min-max) per city, per day.
 
 ###############################################################################
