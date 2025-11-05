@@ -64,7 +64,7 @@ for city in CITIES:
 
 WEATHER = pd.concat(WEATHER, ignore_index=True)
 #print(WEATHER)
-#WEATHER = WEATHER.set_index(["city", "date"])
+WEATHER = WEATHER.set_index(["city", "date"])
 
 ###############################################################################
 
@@ -116,27 +116,37 @@ print(city_max_wind)
 
 ###############################################################################
 
-print(WEATHER)
-print(WEATHER.columns)
+#print(WEATHER)
+#print(WEATHER.columns)
+print(WEATHER.index)
+#print(city)
+bar_width = 0.25
+multiplier = 0
+#WEATHER_unstacked = WEATHER.unstack('city')
+#print(WEATHER_unstacked
+print(WEATHER.unstack(0))
+for date in WEATHER:
+	offset = bar_width * multiplier
+	rects = plt.bar(WEATHER.unstack(0), WEATHER["temp_max"], color='none', edgecolor='black')
+	multiplier += 1
+	
+	
+    
 
-bar_width = 0.25 + 1
 
-
-
-
-plt.bar(WEATHER["date"], WEATHER["temp_max"], width=bar_width, color="orange", edgecolor="black")
-plt.bar(WEATHER["date"], WEATHER["temp_min"], width=bar_width, color="green", edgecolor="black")
-plt.bar(WEATHER["date"], WEATHER["temp_avg"], width=bar_width, color="purple", edgecolor="black")
+#plt.bar(WEATHER["city"], WEATHER["temp_max"], width=bar_width, color="orange", edgecolor="black")
+#plt.bar(WEATHER["city"], WEATHER["temp_min"], width=bar_width, color="green", edgecolor="black")
+#plt.plot(WEATHER["date"], WEATHER["temp_avg"], marker='o', color="purple")
 # TODO: 2 - Visualisation.
 #	2a. Line plot - Temperature trends over 7 days for all cities.
-plt.bar(WEATHER["date"], WEATHER["temp_max"]-WEATHER["temp_min"], width=0.25, bottom=WEATHER["temp_min"], color='lightblue', edgecolor='black')
+#plt.bar(WEATHER["date"], WEATHER["temp_max"]-WEATHER["temp_min"], width=0.25, bottom=WEATHER["temp_min"], color='lightblue', edgecolor='black')
 
 #plt.bar(WEATHER["city"], WEATHER["temp_max"], color='red')
 #plt.bar(WEATHER["city"], WEATHER["temp_min"], color='blue')
 plt.xlabel("Cities")
 plt.ylabel("Temperature (°C)")
 plt.title("Cities average temps")
-plt.legend()
+
 plt.show()
 #time.sleep(10)
 plt.close()
