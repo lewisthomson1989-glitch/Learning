@@ -117,21 +117,32 @@ print(city_max_wind)
 ###############################################################################
 
 #print(WEATHER)
-#print(WEATHER.columns)
-print(WEATHER.index)
-#print(city)
-bar_width = 0.25
-multiplier = 0
-#WEATHER_unstacked = WEATHER.unstack('city')
-#print(WEATHER_unstacked
-print(WEATHER.unstack(0))
-for date in WEATHER:
-	offset = bar_width * multiplier
-	rects = plt.bar(WEATHER.unstack(0), WEATHER["temp_max"], color='none', edgecolor='black')
-	multiplier += 1
-	
-	
-    
+print(WEATHER.columns) # 'precip_sum', 'temp_min', 'temp_max', 'wind_max', 'temp_avg', 'temp_range'
+print(WEATHER.index)   # 'city', 'date' (MultiIndex)
+
+
+x = np.arange(len(WEATHER.index.levels[-1]))
+print(x)
+bar_width = 0.35  
+
+for date, city in enumerate(WEATHER.index.levels[0]):  
+    group_data = WEATHER.loc[city]
+    #print(group_data)
+    plt.bar(x + date * bar_width, group_data['temp_max']-group_data['temp_min'],bottom=group_data['temp_min'], alpha=0.5, edgecolor='black')
+    #plt.bar(x + date * bar_width, group_data['temp_min'], bottom=group_data['temp_min'], alpha=0.5,)
+
+
+
+plt.xlabel('Cities')
+plt.ylabel('Temperature (°C)')
+plt.title('City Temperatures')
+plt.legend()
+
+plt.tight_layout()
+plt.show()
+
+
+
 
 
 #plt.bar(WEATHER["city"], WEATHER["temp_max"], width=bar_width, color="orange", edgecolor="black")
@@ -143,13 +154,13 @@ for date in WEATHER:
 
 #plt.bar(WEATHER["city"], WEATHER["temp_max"], color='red')
 #plt.bar(WEATHER["city"], WEATHER["temp_min"], color='blue')
-plt.xlabel("Cities")
-plt.ylabel("Temperature (°C)")
-plt.title("Cities average temps")
-
-plt.show()
-#time.sleep(10)
-plt.close()
+#plt.xlabel("Cities")
+#plt.ylabel("Temperature (°C)")
+#plt.title("Cities average temps")
+#
+#plt.show()
+##time.sleep(10)
+#plt.close()
 
 #	2b. Bar chart - Average temperature by city.
 
