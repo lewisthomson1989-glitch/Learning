@@ -121,25 +121,40 @@ print(WEATHER.columns) # 'precip_sum', 'temp_min', 'temp_max', 'wind_max', 'temp
 print(WEATHER.index)   # 'city', 'date' (MultiIndex)
 
 
-x = np.arange(len(WEATHER.index.levels[-1]))
-print(x)
-bar_width = 0.35  
+cities = WEATHER.index.levels[0]
+dates = WEATHER.index.levels[-1]
+dates = sorted(dates)
 
-for date, city in enumerate(WEATHER.index.levels[0]):  
-    group_data = WEATHER.loc[city]
-    #print(group_data)
-    plt.bar(x + date * bar_width, group_data['temp_max']-group_data['temp_min'],bottom=group_data['temp_min'], alpha=0.5, edgecolor='black')
-    #plt.bar(x + date * bar_width, group_data['temp_min'], bottom=group_data['temp_min'], alpha=0.5,)
+x = np.arange(len(dates))
+
+num_cities = len(cities)
+group_gap = 0.
+
+bar_width = (1 -  group_gap) / num_cities
+multiplier = 0
+
+plt.figure(figsize=(12, 6))
+
+for city_index, city in enumerate(cities):  
+    group_data = WEATHER.xs(city, level="city").reindex(dates)
+    #group_data = group_data.reindex(dates)
+    offset = (city_index - (num_cities - 1) / 2) * bar_width
+    avg_temp = (group_data['temp_max'] + group_data['temp_min']) / 2
+    plt.bar(x + offset, group_data['temp_max'] - group_data['temp_min'], bottom=group_data['temp_min'], width=bar_width, alpha=0.5, edgecolor='black', label=city)
+    plt.plot(x + offset, avg_temp, marker='o', linestyle='-', label=f"{city} Avg")
+    #multiplier += 1
 
 
-
-plt.xlabel('Cities')
+plt.xticks(x, dates)
+plt.xticks(rotation=45)
+#plt.tight_layout()
+plt.xlabel('Date')
 plt.ylabel('Temperature (°C)')
 plt.title('City Temperatures')
 plt.legend()
-
-plt.tight_layout()
 plt.show()
+
+
 
 
 
