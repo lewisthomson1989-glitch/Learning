@@ -140,7 +140,15 @@ for city_index, city in enumerate(cities):
     #group_data = group_data.reindex(dates)
     offset = (city_index - (num_cities - 1) / 2) * bar_width
     avg_temp = (group_data['temp_max'] + group_data['temp_min']) / 2
-    plt.bar(x + offset, group_data['temp_max'] - group_data['temp_min'], bottom=group_data['temp_min'], width=bar_width, alpha=0.5, edgecolor='black', label=city)
+    plt.bar(x + offset,
+            group_data['temp_max'] - group_data['temp_min'],
+            bottom=group_data['temp_min'], 
+            width=bar_width, 
+            alpha=0.5, 
+            edgecolor='black', 
+            label=city
+            )
+    
     plt.plot(x + offset, avg_temp, marker='o', linestyle='-', label=f"{city} Avg")
     #multiplier += 1
 
