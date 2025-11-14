@@ -128,15 +128,17 @@ dates = sorted(dates)
 x = np.arange(len(dates))
 
 num_cities = len(cities)
-group_gap = 0.
+group_gap = 0.2
 
 bar_width = (1 -  group_gap) / num_cities
+print(bar_width)
 multiplier = 0
 
 plt.figure(figsize=(12, 6))
 
 for city_index, city in enumerate(cities):  
     group_data = WEATHER.xs(city, level="city").reindex(dates)
+    print(group_data)
     #group_data = group_data.reindex(dates)
     offset = (city_index - (num_cities - 1) / 2) * bar_width
     avg_temp = (group_data['temp_max'] + group_data['temp_min']) / 2
@@ -163,7 +165,16 @@ plt.legend()
 plt.show()
 
 
+plt.axes(projection='3d')
+width = depth = bar_width
 
+plt.bar(x + offset, num_cities, bottom=group_data['temp_min'])
+
+
+plt.xticks(x, dates)
+plt.xlabel('dates')
+plt.ylabel('city')
+plt.show()
 
 
 
