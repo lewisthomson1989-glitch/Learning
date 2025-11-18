@@ -158,7 +158,7 @@ for city_index, city in enumerate(cities):
 
 
 plt.xticks(x, dates)
-plt.xticks(rotation=45)
+plt.xticks(rotation=90)
 #plt.tight_layout()
 plt.xlabel('Date')
 plt.ylabel('Temperature (°C)')
@@ -167,26 +167,33 @@ plt.legend()
 plt.show()
 
 
-plt.axes(projection='3d')
+ax = plt.axes(projection='3d')
 
 x_pos = np.arange(num_dates)
 y_pos = np.arange(num_cities)
+
+
 
 for city_index, city in enumerate(cities):  
     group_data = WEATHER.xs(city, level="city").reindex(dates)
 
     z_values = group_data['temp_max'].values
+    #print(z_values)
     ys = np.full(num_dates, city_index)
+    #print(ys)
     z_base = np.zeros(num_dates)
+    #print(z_base)
 
-dx = 0.5
-dy = 0.5
-dz = z_values
+    x_dimension = 0.4
+    y_dimension = 0.4
+    dz = z_values
 
-plt.bar(x_pos, ys)
+    ax.bar3d(x_pos, ys, z_base, x_dimension, y_dimension, dz, alpha=0.5)
 
+ytick_pos = y_pos +y_dimension / 2
 
-plt.xticks(x, dates)
+plt.xticks(x, dates, rotation=45)
+plt.yticks(ytick_pos, cities, rotation=45)
 plt.xlabel('dates')
 plt.ylabel('city')
 plt.show()
