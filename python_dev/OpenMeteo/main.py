@@ -5,6 +5,7 @@ from retry_requests import retry
 import matplotlib.pyplot as plt
 import time
 import numpy as np
+import seaborn as sns
 
 # Tools: requests, pandas, numpy, matplotlib, seaborn (a virtual environment)
 
@@ -120,12 +121,26 @@ print(city_max_wind)
 print(WEATHER.columns) # 'precip_sum', 'temp_min', 'temp_max', 'wind_max', 'temp_avg', 'temp_range'
 print(WEATHER.index)   # 'city', 'date' (MultiIndex)
 
+df_weather = WEATHER.reset_index() #Reshapes dataframe to long format. (Essential for Seaborn)
+print(df_weather)
+
+
+sns.barplot(
+    data=df_weather, 
+    x='date', 
+    y='temp_max', 
+    hue='city'
+    )
+
+plt.show()
 
 cities = WEATHER.index.levels[0]
 dates = WEATHER.index.levels[-1]
 dates = sorted(dates)
 
+
 x = np.arange(len(dates))
+
 
 num_cities = len(cities)
 num_dates = len(dates)
@@ -157,9 +172,9 @@ for city_index, city in enumerate(cities):
     #multiplier += 1
 
 
+
 plt.xticks(x, dates)
 plt.xticks(rotation=90)
-#plt.tight_layout()
 plt.xlabel('Date')
 plt.ylabel('Temperature (°C)')
 plt.title('City Temperatures')

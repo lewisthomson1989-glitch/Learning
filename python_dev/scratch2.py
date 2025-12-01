@@ -343,3 +343,6 @@ for i in range(5):
 
 for i in numbers:
     print(i)
+
+# Write all content of a file into a new file by skipping line number 5.
+
